@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мастер-класс: Кошелёк-зверёк</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #111111;
+            color: #E0D8C8;
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            color: #C4A46C;
+            font-weight: 400;
+            margin-top: 0;
+        }
+
+        .frame {
+            border: 1px solid #C4A46C;
+            margin: 15px auto;
+            padding: 40px 20px;
+            max-width: 800px;
+            position: relative;
+            box-sizing: border-box;
+        }
+
+        .frame::before, .frame::after {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background-color: #C4A46C;
+            transform: rotate(45deg);
+        }
+        .frame::before { top: -4px; left: -4px; }
+        .frame::after { top: -4px; right: -4px; }
+        .frame .inner-border::before { bottom: -4px; left: -4px; }
+        .frame .inner-border::after { bottom: -4px; right: -4px; }
+
+        .inner-border {
+            border: 1px solid #C4A46C;
+            padding: 40px 30px;
+            position: relative;
+        }
+
+        .text-center { text-align: center; }
+        
+        .logo {
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 12px;
+            color: #a89d8a;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        h1 { font-size: 32px; text-align: center; margin-bottom: 15px; }
+        h2 { font-size: 24px; margin-bottom: 20px; }
+        
+        .subtitle {
+            font-size: 16px;
+            text-align: center;
+            color: #a89d8a;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .gallery-row {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .gallery-row img {
+            width: 100%;
+            max-width: 150px;
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid #C4A46C;
+            object-fit: cover;
+        }
+
+        .list-check {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 30px;
+        }
+
+        .list-check li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 12px;
+            font-size: 15px;
+        }
+
+        .list-check li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #C4A46C;
+            font-weight: bold;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: transparent;
+            color: #C4A46C;
+            border: 1px solid #C4A46C;
+            padding: 15px 40px;
+            font-size: 14px;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: #C4A46C;
+            color: #111111;
+        }
+
+        .btn-main {
+            background-color: #C4A46C;
+            color: #111111;
+            font-weight: 600;
+        }
+
+        .btn-main:hover {
+            background-color: #d4b57b;
+        }
+
+        .price-block {
+            text-align: center;
+            padding: 40px 20px;
+            border: 1px solid #333;
+            margin: 40px 0;
+        }
+
+        .price {
+            font-size: 42px;
+            color: #C4A46C;
+            font-family: 'Playfair Display', serif;
+            margin: 15px 0;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #333;
+            padding: 20px 0;
+        }
+        .faq-item:last-child { border-bottom: none; }
+        .faq-item h3 { font-size: 18px; font-family: 'Montserrat', sans-serif; color: #E0D8C8; margin-bottom: 10px; }
+        
+        .section { margin-bottom: 50px; }
+        .divider { text-align: center; color: #C4A46C; font-size: 24px; margin: 40px 0; }
+
+        .fixed-btn {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: #111;
+            padding: 15px;
+            box-sizing: border-box;
+            border-top: 1px solid #C4A46C;
+            z-index: 100;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .fixed-btn { display: block; }
+            body { padding-bottom: 90px; }
+            h1 { font-size: 26px; }
+            .inner-border { padding: 20px 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="frame">
+        <div class="inner-border">
+            
+            <div class="logo">БЛОКНОТОТЕРАПИЯ</div>
+            
+            <div class="section text-center">
+                <div style="font-size: 30px; color: #C4A46C; margin-bottom: 20px;">☆</div>
+                <h1>Маленький кошелёк.<br>Большая радость!</h1>
+                <div class="subtitle">Создайте вместе с ребёнком необычный кошелёк своими руками! Забавная коровка или милый мишка — выбирайте своего героя.</div>
+                
+                <div class="gallery-row">
+                    <img src="https://i.postimg.cc/JsrpLXnf/1JXhqh3IR-d1ah-KH2DOQCLkbnm5xt0q-FSU97KZc-Fhd-UFQJk-SRZea-Iep-Efs-W9Ae-YNv-JHr-RMv-B2m-XZR4Tfx-Wk-ZU.jpg?v=1" alt="Коровка">
+                    <img src="https://i.postimg.cc/K1G02Tjm/dt-Xl-KXF6hmo-Al5Oto-XTKQb-UDVAes-Oa9Hi-LYCJYp-Ap-Wcnwh42c-b-IEf-VEXw-Nq-S1z2Ouf-Ubl-HWw-Bf364u-A3pt.jpg?v=1" alt="Коллекция">
+                    <img src="https://i.postimg.cc/sMjTrWxj/IMG-20230901-172244.jpg?v=1" alt="Коровка и Мишка">
+                    <img src="https://i.postimg.cc/hXD2Bmvn/v-ZQYKKZ-Hw-Di-Jb-M3V-n-FJEk-R-i-OWc-N1la-EYJVV1r2bshc-CLm-Ek-N1w-JBu-Rzo-EGo-Efotqas6057GR-i-Lwkm-N.jpg?v=1" alt="Мишка">
+                </div>
+                
+                <div class="list-check" style="text-align: left; max-width: 400px; margin: 0 auto 30px;">
+                    <li>Доступный мастер-класс</li>
+                    <li>Понятная пошаговая инструкция</li>
+                    <li>Готовые шаблоны и фотографии этапов</li>
+                    <li>Творчество, доступное даже начинающим</li>
+                </div>
+                
+                <a href="https://payform.ru/ebd5fJf/" class="btn btn-main">ХОЧУ СОЗДАТЬ КОШЕЛЁК</a>
+            </div>
+
+            <div class="divider">✦ ✦ ✦</div>
+
+            <div class="section">
+                <h2 class="text-center">Необычная поделка, которую захочется сделать!</h2>
+                <p>Знакомьтесь — это не просто поделка, а настоящий маленький кошелёк в виде забавной коровки или милого мишки!</p>
+                <p>Он станет отличным местом для хранения карманных денег, маленьких секретов и детских сокровищ. А самое интересное — такой аксессуар можно создать самостоятельно!</p>
+                <p>Мастер-класс подойдёт тем, кто любит творчество, необычные вещи и хочет провести время с пользой и удовольствием.</p>
+            </div>
+
+            <div class="divider">✦ ✦ ✦</div>
+
+            <div class="section">
+                <h2 class="text-center">Больше, чем просто рукоделие!</h2>
+                <ul class="list-check">
+                    <li><strong>Творчество вместе с ребёнком.</strong> Отличная возможность провести время вместе, отвлечься от гаджетов.</li>
+                    <li><strong>Не нужны специальные навыки.</strong> Понятный пошаговый формат, с которым справится даже начинающий.</li>
+                    <li><strong>Доступные материалы.</strong> Не потребуется сложное оборудование или дорогостоящие материалы.</li>
+                    <li><strong>Настоящий результат.</strong> Вместо бумажной поделки получится симпатичный аксессуар, которым можно пользоваться.</li>
+                </ul>
+            </div>
+
+            <div class="divider">✦ ✦ ✦</div>
+
+            <div class="section">
+                <h2 class="text-center">Всё необходимое для творчества</h2>
+                <p class="text-center">При покупке мастер-класса вы получите:</p>
+                <ul class="list-check">
+                    <li>Шаблоны деталей для создания кошелька (коровка и мишка)</li>
+                    <li>Пошаговую инструкцию по изготовлению</li>
+                    <li>Фотографии основных этапов работы</li>
+                    <li>Список необходимых материалов и инструментов</li>
+                    <li>9 последовательных этапов сборки</li>
+                </ul>
+            </div>
+
+            <div class="divider">✦ ✦ ✦</div>
+
+            <div class="section">
+                <h2 class="text-center">Для маленьких творцов и взрослых</h2>
+                <ul class="list-check">
+                    <li><strong>Родителям,</strong> которые хотят организовать интересное творческое занятие для детей.</li>
+                    <li><strong>Детям,</strong> которые любят мастерить и создавать необычные вещи.</li>
+                    <li><strong>Любителям рукоделия,</strong> желающим попробовать что-то новое.</li>
+                    <li><strong>Педагогам</strong> и организаторам детских творческих занятий.</li>
+                </ul>
+                <p style="font-size: 13px; color: #a89d8a; font-style: italic; margin-top: 15px;">* Некоторые этапы (игла, шило, установка кнопок) необходимо выполнять взрослому или под его контролем.</p>
+            </div>
+
+            <div class="price-block" id="buy">
+                <h2>Пора создать своего друга!</h2>
+                <p>Подарите себе и ребёнку возможность провести время за интересным творчеством.</p>
+                <div class="price">990 ₽</div>
+                <p style="font-size: 14px; margin-bottom: 25px;">Подробная инструкция и два шаблона кошелька</p>
+                
+                <a href="https://payform.ru/ebd5fJf/" class="btn btn-main">КУПИТЬ МАСТЕР-КЛАСС</a>
+            </div>
+
+            <div class="section">
+                <h2 class="text-center">Часто задаваемые вопросы</h2>
+                
+                <div class="faq-item">
+                    <h3>Нужно ли уметь шить?</h3>
+                    <p>Специальные навыки не обязательны. Мастер-класс содержит последовательную инструкцию с фотографиями.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>Нужно ли покупать специальный набор?</h3>
+                    <p>Нет, готовый набор не обязателен. В мастер-классе есть перечень материалов, которые можно подготовить самостоятельно.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>Можно ли заниматься вместе с ребёнком?</h3>
+                    <p>Да! Мастер-класс задуман в том числе для совместного творчества детей и родителей.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>Что я получу после покупки?</h3>
+                    <p>Шаблоны, пошаговую инструкцию, фотографии этапов и список необходимых материалов.</p>
+                </div>
+            </div>
+
+            <div class="divider">✦ ✦ ✦</div>
+
+            <div class="section text-center">
+                <h2>Ну что, будем творить?</h2>
+                <p>Возможно, именно сегодня появится новый любимый кошелёк вашего ребёнка!</p>
+                <p>Выбирайте своего героя — коровку или мишку — и создавайте его своими руками.</p>
+                <a href="https://payform.ru/ebd5fJf/" class="btn" style="margin-top: 20px;">ХОЧУ МАСТЕР-КЛАСС!</a>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="fixed-btn">
+        <a href="https://payform.ru/ebd5fJf/" class="btn btn-main">КУПИТЬ ЗА 990 ₽</a>
+    </div>
+
+</body>
+</html>
